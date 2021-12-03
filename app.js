@@ -10,6 +10,10 @@ app.get("/", function(req, res) {
 io.on('connection', function(socket){
     console.log('A user connected');
     
+    setTimeout(function(){
+        socket.send("Sent message")
+    }, 4000);
+
     //Whenever someone disconnects this piece of code executed
     socket.on('disconnect', function () {
        console.log('A user disconnected');
