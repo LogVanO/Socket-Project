@@ -4,6 +4,7 @@
    <script src="/socket.io/socket.io.js"></script>
    <script>
       var socket = io();
+      var result;
 
       socket.on('message', function(data){
          var node = document.createElement("H3");
@@ -27,7 +28,7 @@
       });
 
       function sendMessage() {
-         socket.emit('clientEvent', document.getElementById("theMessage").value);
+         socket.emit('clientEvent', result.concat(": ", document.getElementById("theMessage").value));
          document.getElementById("theMessage").value = "";
       }
    </script>
@@ -47,4 +48,9 @@
          </form>
       </div>
    </body>
+   <script>
+      window.onload = function(){
+         result = window.prompt("Enter a username:");
+      };
+   </script>
 </html>
