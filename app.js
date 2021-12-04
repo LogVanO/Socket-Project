@@ -10,9 +10,9 @@ app.get("/", function(req, res) {
 io.on('connection', function(socket){
     console.log('A user connected');
 
-    socket.send("Connected to chat server\r\n");
+    socket.send("Connected to chat server");
 
-    // return message to client
+    // return message to all clients
     socket.on('clientEvent', function(data){
         console.log(data);
         io.sockets.emit('broadcast', data);
