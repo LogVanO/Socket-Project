@@ -2,6 +2,9 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+const messages = [];
+var numMessages = 0;
+
 app.get("/", function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
@@ -12,10 +15,17 @@ io.on('connection', function(socket){
 
     socket.send("Connected to chat server\r\n");
 
+    // Show all of the previous messages before connection
+    for(let i = 0; i < messages.length; ++i) {
+        socket.send(messages[i] + "\r\n");
+    }
+
     // return message to client
     socket.on('clientEvent', function(data){
         console.log(data);
         io.sockets.emit('broadcast', data);
+        messages[numMessages] = data;
+        numMessages += 1;
     });
 
     //Whenever someone disconnects this piece of code executed
