@@ -12,6 +12,13 @@
          document.getElementById("messages").appendChild(node);
       });
 
+      socket.on('broadcast',function(data){
+         var node = document.createElement("LI");
+         var textnode = document.createTextNode(data);
+         node.appendChild(textnode);
+         document.getElementById("messages").appendChild(node);
+      });
+
       function sendMessage() {
          socket.emit('clientEvent', document.getElementById("theMessage").value);
       }

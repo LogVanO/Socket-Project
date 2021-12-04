@@ -15,7 +15,7 @@ io.on('connection', function(socket){
     // return message to client
     socket.on('clientEvent', function(data){
         console.log(data);
-        socket.send(data);
+        io.sockets.emit('broadcast', data);
     });
 
     //Whenever someone disconnects this piece of code executed
