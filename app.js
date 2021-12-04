@@ -17,7 +17,7 @@ io.on('connection', function(socket){
 
     // Show all of the previous messages before connection
     for(let i = 0; i < messages.length; ++i) {
-        socket.send(messages[i] + "\r\n");
+        socket.emit('missed', messages[i] + "\r\n");
     }
 
     // return message to client
