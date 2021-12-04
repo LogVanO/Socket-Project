@@ -21,6 +21,7 @@
 
       function sendMessage() {
          socket.emit('clientEvent', document.getElementById("theMessage").value);
+         document.getElementById("inputBox").reset();
       }
    </script>
    <body>
@@ -29,7 +30,7 @@
             
          </ul> 
       </div>
-      <form style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 100%;" action="javascript:;" onsubmit="sendMessage()">
+      <form id = "inputBox" style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 100%;" action="javascript:;" onsubmit="sendMessage()">
          <input id="theMessage" type="text" placeholder="Enter message">
          <input type="submit" value="Send">
       </form>
