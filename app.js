@@ -13,11 +13,11 @@ app.get("/", function(req, res) {
 io.on('connection', function(socket){
     console.log('A user connected');
 
-    socket.send("Connected to chat server");
+    socket.send("Connected to chat server\r\n");
 
     // Show all of the previous messages before connection
     for(let i = 0; i < messages.length; ++i) {
-        socket.emit('missed', messages[i] + "\r\n");
+        socket.send(messages[i] + "\r\n");
     }
 
     // return message to client
