@@ -4,9 +4,20 @@
    <script src="/socket.io/socket.io.js"></script>
    <script>
       var socket = io();
-      socket.on('message', function(data){document.write(data)});
+
+      socket.on('message', function(data){
+         var node = document.createElement("LI");
+         var textnode = document.createTextNode(data);
+         node.appendChild(textnode);
+         document.getElementById("messages").appendChild(node);
+      });
    </script>
    <body>
+      <div>
+         <ul style="list-style-type:none;" id="messages">
+            
+         </ul> 
+      </div>
       <form style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 100%;">
          <input type="text" placeholder="Enter message">
          <input type="submit" value="Send">

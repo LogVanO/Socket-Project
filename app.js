@@ -12,7 +12,11 @@ io.on('connection', function(socket){
     
     setTimeout(function(){
         socket.send("Sent message")
-    }, 4000);
+    }, 3000);
+
+    setTimeout(function(){
+        socket.send("Sent message 2")
+    }, 6000);
 
     //Whenever someone disconnects this piece of code executed
     socket.on('disconnect', function () {
