@@ -18,6 +18,8 @@
          var textnode = document.createTextNode(data);
          node.appendChild(textnode);
          document.getElementById("messages").appendChild(node);
+         var msglist = document.getElementById("msglist");
+         msglistscrollTop = messages.scrollHeight;
       });
 
       socket.on('broadcast',function(data){
@@ -25,6 +27,8 @@
          var textnode = document.createTextNode(data);
          node.appendChild(textnode);
          document.getElementById("messages").appendChild(node);
+         var msglist = document.getElementById("msglist");
+         msglist.scrollTop = messages.scrollHeight;
       });
 
       function sendMessage() {
@@ -36,7 +40,7 @@
       <div id="messagesHead" style="position: absolute; top: 0px; left: 50%; transform: translateX(-50%);">
 
       </div>
-      <div style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%); width: 80%;">
+      <div id = "msglist" style="position: absolute; max-height: 80%; overflow-y: scroll; bottom: 50px; left: 50%; transform: translateX(-50%); width: 80%;">
          <ul style="list-style-type:none;" id="messages">
             
          </ul> 
@@ -48,6 +52,7 @@
          </form>
       </div>
    </body>
+
    <script>
       window.onload = function(){
          result = window.prompt("Enter a username:");
