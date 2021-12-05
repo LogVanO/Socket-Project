@@ -2,9 +2,10 @@
   "name": "socket_project",
   "version": "1.0.0",
   "description": "comp 3343 final",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo "
+    "test": "echo ",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
