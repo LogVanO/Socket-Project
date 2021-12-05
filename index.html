@@ -23,12 +23,23 @@
       });
 
       socket.on('broadcast',function(data){
+         // Add the new message
          var node = document.createElement("LI");
          var textnode = document.createTextNode(data);
          node.appendChild(textnode);
-         document.getElementById("messages").appendChild(node);
+         var messages = document.getElementById("messages");
+         messages.appendChild(node);
+
+         // Scroll to the bottom
          var msglist = document.getElementById("msglist");
          msglist.scrollTop = messages.scrollHeight;
+
+         
+         if(messages.childElementCount > 500) {
+            messages.removeChild(messages.firstChild);
+            console.log("Here");
+         }
+
       });
 
       function sendMessage() {

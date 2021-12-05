@@ -20,12 +20,15 @@ io.on('connection', function(socket){
         socket.emit('missed', messages[i] + "\r\n");
     }
 
-    // return message to client
+    // return message to all clients
     socket.on('clientEvent', function(data){
         console.log(data);
         io.sockets.emit('broadcast', data);
-        messages[numMessages] = data;
-        numMessages += 1;
+        messages[messages.length] = data;
+        if(messages.length > 500) {
+            messages.shift();
+            console.log(messages);
+        }
     });
 
     //Whenever someone disconnects this piece of code executed
